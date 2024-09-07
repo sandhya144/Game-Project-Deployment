@@ -24,6 +24,10 @@ function initializeWebSocket() {
             const boxtext = document.getElementsByClassName('boxtext')[data.index];
             boxtext.innerText = data.player;
             audioTurn.play();  // Play ting sound when a move is received
+            if (audioTurn.readyState >= 3) { // Checks if the audio is ready to play
+                audioTurn.playbackRate = 3.0;
+                audioTurn.play();
+            }
             turn = changeTurn();
             document.querySelector('.info').innerText = `Turn for ${turn}`;
             checkWin();
